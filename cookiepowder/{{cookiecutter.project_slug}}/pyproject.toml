@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools", "wheel", "twine"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = '{{cookiecutter.project_slug}}'
+version = '{{cookiecutter.version}}'
+description = "{{ cookiecutter.project_short_description }}"
+readme = "README.md"
+authors = [
+    {name = '{{cookiecutter.github_username}}', email = '{{cookiecutter.email}}' }
+]
+maintainers = [
+    {name = '{{cookiecutter.github_username}}', email = '{{cookiecutter.email}}' }
+]
+keywords = ['{{ cookiecutter.project_slug }}',]
+{% if cookiecutter.open_source_license == 'MIT license' -%}
+license = {text = "MIT license"}
+{% elif cookiecutter.open_source_license == 'BSD license' -%}
+license = {text = "BSD license"}
+{% elif cookiecutter.open_source_license == 'ISC license' -%}
+license = {text = "ISC license"}
+{% elif cookiecutter.open_source_license == 'Apache Software License 2.0' -%}
+license = {text = "Apache Software License 2.0"}
+{% elif cookiecutter.open_source_license == 'GNU General Public License v3' -%}
+license = {text = "GNU General Public License v3"}
+{% else -%}
+license = {text = "Proprietary"}
+{% endif %}
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: {% if cookiecutter.open_source_license != 'Not open source' -%} OSI Approved :: {% endif %} {{cookiecutter.open_source_license}}",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: Django",
+]
+requires-python = '{{cookiecutter.python_version}}'
+
+dependencies = [
+    'django >= 2.0',
+    'asgiref ~= 3.7.2',
+    'sqlparse ~= 0.4.4',
+    'typing-extensions ~= 4.6.3',
+    'pip-tools ~= 6.13.1',
+]
+
+[project.optional-dependencies]
+dev = [
+    'bumpver >= 2023.1124',
+    'build >= 0.10.0',
+    'flake8 >= 6.0.0',
+    {% if cookiecutter.command_line_interface != 'No Cli'-%}'{{cookiecutter.command_line_interface}}',{% endif %}
+    ]
+docs = [
+    'sphinx >= 7.0.1',
+    'myst-parser >= 2.0.0',
+]
+test = [
+    'pytest >= 7.3.2',
+    'pytest-cov >= 4.1.0',
+    'pytest-django >= 4.5.2',
+    'tox >= 4.5.1',
+    'coverage >= 7.2.7',
+]
+
+
+[project.urls]
+Homepage = 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}'
+Repository = 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}'
+
+[project.scripts]
+"manage.py" = "{{cookiecutter.project_slug}}:django_manage"
