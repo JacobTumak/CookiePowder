@@ -45,7 +45,7 @@ dependencies = [
     'asgiref ~= 3.7.2',
     'sqlparse ~= 0.4.4',
     'typing-extensions ~= 4.6.3',
-    'pip-tools ~= 6.13.1',
+    'pip-tools ~= 6.13.0',
 ]
 
 [project.optional-dependencies]
