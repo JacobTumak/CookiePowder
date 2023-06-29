@@ -27,8 +27,3 @@ Features
 
 * TODO
 
-Credits
--------
-
-[//]: # (TODO: change credits?)
-This package was created with Cookiecutter and the [`audreyr/cookiecutter`](https://github.com/audreyr/cookiecutter) project template.

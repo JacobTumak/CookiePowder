@@ -7,6 +7,30 @@ import datetime
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
+django_default_files = [
+    "{{cookiecutter.project_slug}}/__init__.py",
+    "{{cookiecutter.project_slug}}/asgi.py",
+    "{{cookiecutter.project_slug}}/settings.py",
+    "{{cookiecutter.project_slug}}/urls.py",
+    "{{cookiecutter.project_slug}}/wsgi.py",
+    "manage.py",
+]
+def generate_django_secret():
+    subprocess.run(['pip', 'install', '-q', 'django'])
+    from django.core.management.utils import get_random_secret_key
+    django_secret = get_random_secret_key()
+
+    with open('{{cookiecutter.project_slug}}/settings.py', "r") as file:
+        content = file.read()
+
+    # Construct the pattern to match the variable assignment
+    pattern = r"{} = .*".format(re.escape('SECRET_KEY'))
+
+    # Replace the variable assignment with the new value
+    replaced_content = re.sub(pattern, "{} = '{}'".format('SECRET_KEY', django_secret), content)
+
+    with open('{{cookiecutter.project_slug}}/settings.py', "w") as file:
+        file.write(replaced_content)
 
 def remove_file(filepath):
     os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
@@ -57,7 +81,10 @@ if __name__ == '__main__':
         subprocess.run(['pip', 'install', '-r', 'requirements.txt'])
         subprocess.run(['pip', 'install', '-r', 'dev_requirements.txt'])
 
-    if '{{cookiecutter.generate_django_secret}}'.lower() == 'y':
-        subprocess.run(['python', 'gen_django_secret.py'])
-    remove_file("gen_django_secret.py")
+    if '{{cookiecutter.create_django_default_files}}'.lower() == 'y':
+        if '{{cookiecutter.generate_django_secret}}'.lower() == 'y':
+            generate_django_secret()
 
+    else:
+        for filepath in django_default_files:
+            remove_file(filepath)

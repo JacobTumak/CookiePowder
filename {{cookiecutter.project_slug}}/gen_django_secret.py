@@ -1,8 +1,8 @@
 import subprocess
 import re
-from django.core.management.utils import get_random_secret_key
 
 subprocess.run(['pip', 'install', '-q', 'django'])
+from django.core.management.utils import get_random_secret_key
 django_secret = get_random_secret_key()
 
 with open('{{cookiecutter.project_slug}}/settings.py', "r") as file:
