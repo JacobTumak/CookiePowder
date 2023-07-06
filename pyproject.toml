@@ -1,26 +1,26 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "cookiepowder"
 version = "0.1.0"
-description = "Cookiecutter template for a Django-Python package using pyproject.toml"
+requires-python = ">=3.7"
+description = "Cookiecutter template for Django/Python packages using pyproject.toml"
+readme = "README.md"
+license = {file = "LICENSE"}
 authors = [
-    {name = "Ben Blair", email = "example@example.com"},
-    {name = "Jacob Tumak", email = "example@example.com"},
-]
-license = "BSD"
-urls = [
-    {name = "Repository", url = "https://github.com/audreyr/cookiecutter-pypackage"} #TODO change urls
+    {name = "Ben Blair", email = "benchrisblair@users.noreply.github.com"},
+    {name = "Jacob Tumak", email = "JacobTumak@users.noreply.github.com"},
 ]
 keywords = ["cookiecutter", "template", "package", "django", "pyproject.toml-based"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Environment :: PyCharm",
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
     "Intended Audience :: Developers",
     "Natural Language :: English",
-    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -28,12 +28,16 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Topic :: Software Development"
 ]
-requires-python = ">=3.7, <4"
 
-
-[project.dependencies]
-test = [
-    "pytest-cookies >= 0.7.0",
-    "tox >= 4.6.3",
+[project.optional-dependencies]
+dev = [
+    "cookiecutter>=2.1.0",
+    "pytest>=3.9.0",
+    "pytest-cookies>=0.7.0",
+    "pytest-cov>=4.1.0",
+    "pytest-sugar>=0.9.7",
+    "tox>=4.6.3",
 ]
 
+[project.urls]
+Repository = "https://github.com/JacobTumak/CookiePowder"
