@@ -3,6 +3,7 @@ requires = ["setuptools", "wheel", "twine"]
 build-backend = "setuptools.build_meta"
 
 [project]
+version = '{{cookiecutter.version}}'
 name = '{{cookiecutter.project_slug}}'
 description = "{{ cookiecutter.project_short_description }}"
 readme = "README.md"
@@ -30,7 +31,7 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",
     "License :: {% if cookiecutter.open_source_license != 'Not open source' -%} OSI Approved :: {% endif %} {{cookiecutter.open_source_license}}",
-    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.7", # TODO: Check python version compatibility after testing. Remove incompatibles.
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -38,7 +39,6 @@ classifiers = [
     "Framework :: Django",
 ]
 requires-python = '{{cookiecutter.python_version}}'
-dynamic = ['version',]
 dependencies = [
     'django >= 2.0',
     'typing-extensions ~= 4.6.3',
@@ -49,9 +49,13 @@ dependencies = [
 dev = [
     'bumpver >= 2023.1124',
     'build >= 0.10.0',
-    'flake8 >= 6.0.0',
+    'invoke >= 2.1.3',
     {% if cookiecutter.command_line_interface != 'No Cli'-%}'{{cookiecutter.command_line_interface}}',{% endif %}
     ]
+lint = [
+    'flake8 >= 6.0.0',
+    'black >= 23.3.0',
+]
 docs = [
     'sphinx >= 7.0.1',
     'myst-parser >= 2.0.0',
@@ -79,9 +83,15 @@ push = true
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = [ "current_version = \"{version}\"",]
-'README.rst' = [ "Version: {version}",]
+'README.md' = [ "Version: {version}",]
 'polls/__init__.py' = [ "__version__ = \"{version}\"",]
 'docs/sphinx/conf.py' = [ "release = '{version}'",]
 
+[tool.setuptools]
+packages = [
+    # TODO: Change if needed. This should point to the directory intended to be packaged
+    '{{cookiecutter.project_slug}}',
+]
+
 [tool.setuptools.dynamic.version]
-attr = 'polls.__version__'
+attr = '{{cookiecutter.project_slug}}.__version__'

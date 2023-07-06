@@ -1,7 +1,6 @@
 # {{cookiecutter.project_name}} Homepage
 
-```
-{toctree}
+```{toctree}
 :maxdepth: 2
 :caption: "Contents:"
 
