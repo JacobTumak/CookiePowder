@@ -69,7 +69,7 @@ if __name__ == '__main__':
     #     cli_file = os.path.join('{{ cookiecutter.project_slug }}', 'cli.py')
     #     os.remove(cli_file)
 
-    if 'Not open source' == '{{ cookiecutter.open_source_license }}':
+    if 'Not open-source' == '{{ cookiecutter.open_source_license }}':
         os.remove('LICENSE')
 
     filepath = "docs/sphinx/conf.py"
