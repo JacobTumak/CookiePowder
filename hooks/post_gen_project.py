@@ -85,7 +85,7 @@ if __name__ == '__main__':
         subprocess.run(['pip', 'install', '-r', 'dev_requirements.txt'])
 
     if '{{cookiecutter.create_django_default_files}}'.lower() == 'y':
-        if '{{cookiecutter.generate_django_secret}}'.lower() == 'y':
+        if '{{cookiecutter.generate_django_secret_key}}'.lower() == 'y':
             generate_django_secret()
 
     else:

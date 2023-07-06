@@ -29,7 +29,7 @@ license = {text = "Proprietary"}
 {% endif %}
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
-    "Intended Audience :: Developers",
+    "Intended Audience :: {{cookiecutter.intended_audience}}",
     "License :: {% if cookiecutter.open_source_license != 'Not open source' -%} OSI Approved :: {% endif %} {{cookiecutter.open_source_license}}",
     "Programming Language :: Python :: 3.7", # TODO: Check python version compatibility after testing. Remove incompatibles.
     "Programming Language :: Python :: 3.8",
