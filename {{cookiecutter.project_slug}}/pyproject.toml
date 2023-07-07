@@ -1,36 +1,34 @@
+# Project Configuration
 [build-system]
-requires = ["setuptools", "wheel", "twine"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-version = '{{cookiecutter.version}}'
-name = '{{cookiecutter.project_slug}}'
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+requires-python = "{{ cookiecutter.python_version }}"
 description = "{{ cookiecutter.project_short_description }}"
 readme = "README.md"
+license = {file = "LICENSE"}
 authors = [
-    {name = '{{cookiecutter.github_username}}', email = '{{cookiecutter.email}}' }
+    {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
 ]
-maintainers = [
-    {name = '{{cookiecutter.github_username}}', email = '{{cookiecutter.email}}' }
-]
-keywords = ['{{ cookiecutter.project_slug }}',]
-{% if cookiecutter.open_source_license == 'MIT license' -%}
-license = {text = "MIT license"}
-{% elif cookiecutter.open_source_license == 'BSD license' -%}
-license = {text = "BSD license"}
-{% elif cookiecutter.open_source_license == 'ISC license' -%}
-license = {text = "ISC license"}
-{% elif cookiecutter.open_source_license == 'Apache Software License 2.0' -%}
-license = {text = "Apache Software License 2.0"}
-{% elif cookiecutter.open_source_license == 'GNU General Public License v3' -%}
-license = {text = "GNU General Public License v3"}
-{% else -%}
-license = {text = "Proprietary"}
-{% endif %}
+keywords = ["{{ cookiecutter.project_slug }}",]
+
+{%- set license_classifiers = {
+    "MIT License": "License :: OSI Approved :: MIT License",
+    "BSD License": "License :: OSI Approved :: BSD License",
+    "ISC License": "License :: OSI Approved :: ISC License (ISCL)",
+    "Apache Software License 2.0": "License :: OSI Approved :: Apache Software License",
+    "GNU General Public License v3": "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+} -%}
+
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 4 - Beta",
+    {%- if cookiecutter.open_source_license in license_classifiers %}
+    "{{ license_classifiers[cookiecutter.open_source_license] }}",
+    {%- endif %}
     "Intended Audience :: {{cookiecutter.intended_audience}}",
-    "License :: {% if cookiecutter.open_source_license != 'Not open source' -%} OSI Approved :: {% endif %} {{cookiecutter.open_source_license}}",
     "Programming Language :: Python :: 3.7", # TODO: Check python version compatibility after testing. Remove incompatibles.
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -38,7 +36,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Framework :: Django",
 ]
-requires-python = '{{cookiecutter.python_version}}'
+
 dependencies = [
     'django >= 2.0',
     'typing-extensions ~= 4.6.3',
@@ -72,6 +70,7 @@ Repository = 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecut
 [project.scripts]
 'manage.py' = '{{cookiecutter.project_slug}}:django_manage'
 
+# Other Tools
 [tool.bumpver]
 current_version = '{{cookiecutter.version}}'
 version_pattern = 'MAJOR.MINOR.PATCH'
