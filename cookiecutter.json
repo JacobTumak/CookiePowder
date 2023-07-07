@@ -16,5 +16,5 @@
   "generate_requirements_files": "n",
   "use_pytest": "y",
   "create_author_file": "y",
-  "open_source_license": ["MIT License", "BSD 3-Clause License", "ISC License", "Apache Software License 2.0", "GNU General Public License v3.0", "Not OSS"]
+  "open_source_license": ["MIT License", "BSD License", "ISC License", "Apache Software License 2.0", "GNU General Public License v3", "None"]
 }
