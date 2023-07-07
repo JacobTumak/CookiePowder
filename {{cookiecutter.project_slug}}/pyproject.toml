@@ -21,8 +21,7 @@ keywords = ["{{ cookiecutter.project_slug }}",]
     "ISC License": "License :: OSI Approved :: ISC License (ISCL)",
     "Apache Software License 2.0": "License :: OSI Approved :: Apache Software License",
     "GNU General Public License v3": "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
-} -%}
-
+} %}
 classifiers = [
     "Development Status :: 4 - Beta",
     {%- if cookiecutter.open_source_license in license_classifiers %}
