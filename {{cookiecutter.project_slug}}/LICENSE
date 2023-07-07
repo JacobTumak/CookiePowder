@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-{% elif cookiecutter.open_source_license == 'BSD 3-Clause License' %}
+{% elif cookiecutter.open_source_license == 'BSD License' %}
 BSD 3-Clause License
 
 Copyright (c) {% now 'local', '%Y' %}, {{ cookiecutter.full_name }}
@@ -85,7 +85,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-{% elif cookiecutter.open_source_license == 'GNU General Public License v3.0' -%}
+{% elif cookiecutter.open_source_license == 'GNU General Public License v3' -%}
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
