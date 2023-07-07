@@ -1,3 +1,4 @@
+# Project Configuration
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
@@ -37,7 +38,19 @@ dev = [
     "pytest-cov>=4.1.0",
     "pytest-sugar>=0.9.7",
     "tox>=4.6.3",
+    "black>=23.3.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "flake8-bugbear>=23.6.5",
 ]
 
 [project.urls]
 Repository = "https://github.com/JacobTumak/CookiePowder"
+
+# Other Tools
+[tool.black]
+target-version = ["py37","py38","py39","py310","py311"]
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true
