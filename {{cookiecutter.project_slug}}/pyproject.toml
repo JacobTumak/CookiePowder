@@ -14,7 +14,6 @@ authors = [
     {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
 ]
 keywords = ["{{ cookiecutter.project_slug }}",]
-
 {%- set license_classifiers = {
     "MIT License": "License :: OSI Approved :: MIT License",
     "BSD License": "License :: OSI Approved :: BSD License",
@@ -27,68 +26,62 @@ classifiers = [
     {%- if cookiecutter.open_source_license in license_classifiers %}
     "{{ license_classifiers[cookiecutter.open_source_license] }}",
     {%- endif %}
-    "Intended Audience :: {{cookiecutter.intended_audience}}",
-    "Programming Language :: Python :: 3.7", # TODO: Check python version compatibility after testing. Remove incompatibles.
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
+    "Intended Audience :: {{ cookiecutter.intended_audience }}",
+    "Natural Language :: English",
+    "Programming Language :: Python",
     "Framework :: Django",
 ]
-
 dependencies = [
-    'django >= 2.0',
-    'typing-extensions ~= 4.6.3',
-    'pip-tools ~= 6.13.0',
+    "django",
 ]
 
 [project.optional-dependencies]
-dev = [
-    'bumpver >= 2023.1124',
-    'build >= 0.10.0',
-    'invoke >= 2.1.3',
-    ]
-lint = [
-    'flake8 >= 6.0.0',
-    'black >= 23.3.0',
-]
 docs = [
-    'sphinx >= 7.0.1',
-    'myst-parser >= 2.0.0',
+    "sphinx",
+    "sphinx-rtd-theme",
+    "myst-parser",
+]
+style = [
+    "black",
+    "isort",
+    "flake8",
 ]
 test = [
-    'pytest-cov >= 4.1.0',
-    'pytest-django >= 4.5.2',
-    'tox >= 4.5.1',
+    "tox",
+    "pytest-django",
+    "pytest-cov",
+    "pytest-sugar",
+]
+utils = [
+    "invoke",
+    "bumpver",
+    "build",
+    "twine",
 ]
 
 [project.urls]
-Homepage = 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}'
-Repository = 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}'
+Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 
 [project.scripts]
-'manage.py' = '{{cookiecutter.project_slug}}:django_manage'
+'manage.py' = '{{ cookiecutter.project_slug }}:django_manage'
+
 
 # Other Tools
+[tool.setuptools]
+include-package-data = true  # True by default, declarations in MANIFEST.in
+packages = ["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.*"]
+
 [tool.bumpver]
-current_version = '{{cookiecutter.version}}'
-version_pattern = 'MAJOR.MINOR.PATCH'
-commit_message = 'Version bump: {old_version} -> {new_version}'
-commit = true
-tag = true
-push = true
+current_version = "{{ cookiecutter.version }}"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "Bump version: {old_version} --> {new_version}"
+commit = false
+tag = false
+push = false
 
 [tool.bumpver.file_patterns]
-"pyproject.toml" = [ "current_version = \"{version}\"",]
-'README.md' = [ "Version: {version}",]
-'polls/__init__.py' = [ "__version__ = \"{version}\"",]
-'docs/sphinx/conf.py' = [ "release = '{version}'",]
-
-[tool.setuptools]
-packages = [
-    # TODO: Change if needed. This should point to the directory intended to be packaged
-    '{{cookiecutter.project_slug}}',
-]
-
-[tool.setuptools.dynamic.version]
-attr = '{{cookiecutter.project_slug}}.__version__'
+"pyproject.toml" = ['version = "{version}"']
+"README.md" = ['Version: {version}']
+"{{ cookiecutter.project_slug }}/__init__.py" = ['__version__ = "{version}"']
+"docs/sphinx/conf.py" = ["release = '{version}'"]

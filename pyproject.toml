@@ -45,7 +45,9 @@ dev = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/JacobTumak/CookiePowder"
 Repository = "https://github.com/JacobTumak/CookiePowder"
+
 
 # Other Tools
 [tool.black]
