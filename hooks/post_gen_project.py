@@ -14,11 +14,10 @@ django_default_files = [
     "{{ cookiecutter.project_slug }}/urls.py",
     "{{ cookiecutter.project_slug }}/wsgi.py",
     "manage.py",
-    "templates",
 ]
 
 
-def generate_django_secret():
+def generate_django_secret_key():
     subprocess.run(['pip', 'install', '-q', 'django'])
     from django.core.management.utils import get_random_secret_key
     django_secret = get_random_secret_key()
@@ -34,6 +33,7 @@ def generate_django_secret():
 
     with open('{{ cookiecutter.project_slug }}/settings.py', "w") as file:
         file.write(replaced_content)
+
 
 def remove_file(filepath):
     os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     if '{{ cookiecutter.create_django_default_files }}'.lower() == 'y':
         if '{{ cookiecutter.generate_django_secret_key }}'.lower() == 'y':
-            generate_django_secret()
+            generate_django_secret_key()
     else:
         for filepath in django_default_files:
             remove_file(filepath)
