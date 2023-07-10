@@ -65,7 +65,7 @@ if __name__ == '__main__':
     if '{{ cookiecutter.open_source_license }}' == 'None':
         os.remove('LICENSE')
 
-    filepath = "docs/sphinx/source/conf.py"
+    filepath = "docs/source/conf.py"
     var_name = "copyright"
     new_val = f'{datetime.datetime.now().year}, {{ cookiecutter.copyright_entity }}'
     replace_var_val(filepath, var_name, new_val)
@@ -73,9 +73,10 @@ if __name__ == '__main__':
     if '{{ cookiecutter.generate_requirements_files }}'.lower() == 'y':
         subprocess.run(['pip', 'install', 'pip-tools'])
         subprocess.run(['pip-compile', '-o', 'requirements.txt', 'pyproject.toml', '--resolver=backtracking'])
-        subprocess.run(['pip-compile', '-o', 'dev_requirements.txt', 'pyproject.toml', '--resolver=backtracking', '--all-extras'])
+        subprocess.run(['pip-compile', '-o', 'requirements_dev.txt', 'pyproject.toml', '--resolver=backtracking', '--all-extras'])
+        subprocess.run(['pip-compile', '-o', 'docs/requirements_docs.txt', 'pyproject.toml', '--resolver=backtracking', '--extras=docs'])
         subprocess.run(['pip', 'install', '-r', 'requirements.txt'])
-        subprocess.run(['pip', 'install', '-r', 'dev_requirements.txt'])
+        subprocess.run(['pip', 'install', '-r', 'requirements_dev.txt'])
 
     if '{{ cookiecutter.create_django_default_files }}'.lower() == 'y':
         if '{{ cookiecutter.generate_django_secret_key }}'.lower() == 'y':
