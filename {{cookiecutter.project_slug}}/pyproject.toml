@@ -45,9 +45,11 @@ style = [
     "black",
     "isort",
     "flake8",
+    "flake8-bugbear",
 ]
 test = [
     "tox",
+    "pytest",
     "pytest-django",
     "pytest-cov",
     "pytest-sugar",
@@ -85,3 +87,10 @@ push = false
 "README.md" = ['Version: {version}']
 "{{ cookiecutter.project_slug }}/__init__.py" = ['__version__ = "{version}"']
 "docs/sphinx/conf.py" = ["release = '{version}'"]
+
+[tool.black]
+target-version = ["py37","py38","py39","py310","py311"]
+
+[tool.isort]
+profile = "black"
+skip_gitignore = true
