@@ -65,7 +65,7 @@ if __name__ == '__main__':
     if '{{ cookiecutter.open_source_license }}' == 'None':
         os.remove('LICENSE')
 
-    filepath = "docs/sphinx/conf.py"
+    filepath = "docs/sphinx/source/conf.py"
     var_name = "copyright"
     new_val = f'{datetime.datetime.now().year}, {{ cookiecutter.copyright_entity }}'
     replace_var_val(filepath, var_name, new_val)
