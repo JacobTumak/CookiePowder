@@ -110,7 +110,7 @@ Before you submit a pull request, check that it meets these guidelines:
 To run a subset of tests:
 
 ``` shell
-{% if cookiecutter.use_pytest == 'y' -%}
+{% if cookiecutter._use_pytest -%}
 ```
 
 > \$ pytest [tests.test](){{ cookiecutter.project_slug }}
