@@ -1,20 +1,28 @@
 {
   "full_name": "Michael Scott",
-  "project_name": "Threat Level Midnight",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-  "project_short_description": "After the untimely death of his wife, secret agent Michael Scarn is tasked with one final mission: vengeance.",
   "company_name":"Dunder Mifflin",
-  "copyright_entity": "{{ cookiecutter.full_name }}",
   "email": "{{ cookiecutter.full_name.lower().replace(' ', '') }}@{{ cookiecutter.company_name.lower().replace(' ', '') }}.com",
   "github_username": "{{ cookiecutter.full_name.lower().replace(' ', '') }}",
   "pypi_username": "{{ cookiecutter.github_username }}",
+  "copyright_entity": "{{ cookiecutter.full_name }}",
+
+  "project_name": "Threat Level Midnight",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "After the untimely death of his wife, secret agent Michael Scarn is tasked with one final mission: vengeance.",
   "version": "0.1.0",
   "python_version": ">=3.7, <4.0",
   "intended_audience": "Developers",
+  "open_source_license": ["MIT License", "BSD License", "ISC License", "Apache Software License 2.0", "GNU General Public License v3", "None"],
+
   "create_django_default_files": "y",
   "generate_django_secret_key": "{{ cookiecutter.create_django_default_files }}",
   "generate_requirements_files": "n",
-  "use_pytest": "y",
-  "create_author_file": "y",
-  "open_source_license": ["MIT License", "BSD License", "ISC License", "Apache Software License 2.0", "GNU General Public License v3", "None"]
+
+  "_use_invoke": true,
+  "_use_bumpver": true,
+  "_use_tox": true,
+  "_use_pytest": true,
+  "_use_black": true,
+  "_use_isort": true,
+  "_use_flake8": true
 }
