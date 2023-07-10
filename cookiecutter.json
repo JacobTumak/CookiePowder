@@ -20,6 +20,7 @@
 
   "_use_invoke": true,
   "_use_bumpver": true,
+  "_use_bumpver_git": true,
   "_use_tox": true,
   "_use_pytest": true,
   "_use_black": true,

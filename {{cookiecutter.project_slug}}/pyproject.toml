@@ -79,9 +79,9 @@ packages = ["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.
 current_version = "{{ cookiecutter.version }}"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version: {old_version} --> {new_version}"
-commit = false
-tag = false
-push = false
+commit = true
+tag = true
+push = true
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['version = "{version}"']
