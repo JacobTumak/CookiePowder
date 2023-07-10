@@ -1,4 +1,7 @@
-import toml
+try:
+    import tomllib
+except ModuleNotFoundError:
+    import tomli as tomllib
 
 from invoke import task, Collection
 from . import clean, docs, pypi
@@ -8,7 +11,7 @@ from . import clean, docs, pypi
 def install_deps(c):
     # Load pyproject.toml file
     with open("pyproject.toml", "r") as f:
-        pyproject = toml.load(f)
+        pyproject = tomllib.load(f)
 
     # Install core dependencies
     if "dependencies" in pyproject["project"]:
