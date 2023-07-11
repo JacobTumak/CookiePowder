@@ -1,97 +1,99 @@
+# Project Configuration
 [build-system]
-requires = ["setuptools", "wheel", "twine"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-version = '{{cookiecutter.version}}'
-name = '{{cookiecutter.project_slug}}'
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+requires-python = "{{ cookiecutter.python_version }}"
 description = "{{ cookiecutter.project_short_description }}"
 readme = "README.md"
+license = {file = "LICENSE"}
 authors = [
-    {name = '{{cookiecutter.github_username}}', email = '{{cookiecutter.email}}' }
+    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
 ]
-maintainers = [
-    {name = '{{cookiecutter.github_username}}', email = '{{cookiecutter.email}}' }
-]
-keywords = ['{{ cookiecutter.project_slug }}',]
-{% if cookiecutter.open_source_license == 'MIT license' -%}
-license = {text = "MIT license"}
-{% elif cookiecutter.open_source_license == 'BSD license' -%}
-license = {text = "BSD license"}
-{% elif cookiecutter.open_source_license == 'ISC license' -%}
-license = {text = "ISC license"}
-{% elif cookiecutter.open_source_license == 'Apache Software License 2.0' -%}
-license = {text = "Apache Software License 2.0"}
-{% elif cookiecutter.open_source_license == 'GNU General Public License v3' -%}
-license = {text = "GNU General Public License v3"}
-{% else -%}
-license = {text = "Proprietary"}
-{% endif %}
+keywords = ["{{ cookiecutter.project_slug }}",]
+{%- set license_classifiers = {
+    "MIT License": "License :: OSI Approved :: MIT License",
+    "BSD License": "License :: OSI Approved :: BSD License",
+    "ISC License": "License :: OSI Approved :: ISC License (ISCL)",
+    "Apache Software License 2.0": "License :: OSI Approved :: Apache Software License",
+    "GNU General Public License v3": "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+} %}
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
-    "Intended Audience :: Developers",
-    "License :: {% if cookiecutter.open_source_license != 'Not open source' -%} OSI Approved :: {% endif %} {{cookiecutter.open_source_license}}",
-    "Programming Language :: Python :: 3.7", # TODO: Check python version compatibility after testing. Remove incompatibles.
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
+    "Development Status :: 4 - Beta",
+    {%- if cookiecutter.open_source_license in license_classifiers %}
+    "{{ license_classifiers[cookiecutter.open_source_license] }}",
+    {%- endif %}
+    "Intended Audience :: {{ cookiecutter.intended_audience }}",
+    "Natural Language :: English",
+    "Programming Language :: Python",
     "Framework :: Django",
 ]
-requires-python = '{{cookiecutter.python_version}}'
 dependencies = [
-    'django >= 2.0',
-    'typing-extensions ~= 4.6.3',
-    'pip-tools ~= 6.13.0',
+    "django",
 ]
 
 [project.optional-dependencies]
-dev = [
-    'bumpver >= 2023.1124',
-    'build >= 0.10.0',
-    'invoke >= 2.1.3',
-    {% if cookiecutter.command_line_interface != 'No Cli'-%}'{{cookiecutter.command_line_interface}}',{% endif %}
-    ]
-lint = [
-    'flake8 >= 6.0.0',
-    'black >= 23.3.0',
-]
 docs = [
-    'sphinx >= 7.0.1',
-    'myst-parser >= 2.0.0',
+    "sphinx",
+    "sphinx-rtd-theme",
+    "myst-parser",
+]
+style = [
+    "black",
+    "isort",
+    "flake8",
+    "flake8-bugbear",
 ]
 test = [
-    'pytest-cov >= 4.1.0',
-    'pytest-django >= 4.5.2',
-    'tox >= 4.5.1',
+    "tox",
+    "pytest",
+    "pytest-django",
+    "pytest-cov",
+    "pytest-sugar",
+]
+utils = [
+    "tomli; python_version < '3.11'",
+    "invoke",
+    "bumpver",
+    "build",
+    "twine",
 ]
 
 [project.urls]
-Homepage = 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}'
-Repository = 'https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}'
+Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 
 [project.scripts]
-'manage.py' = '{{cookiecutter.project_slug}}:django_manage'
+"manage.py" = "{{ cookiecutter.project_slug }}:django_manage"
+
+
+# Other Tools
+[tool.setuptools]
+include-package-data = true  # True by default, declarations in MANIFEST.in
+
+[tool.setuptools.packages.find]
+include = ["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.*"]
 
 [tool.bumpver]
-current_version = '{{cookiecutter.version}}'
-version_pattern = 'MAJOR.MINOR.PATCH'
-commit_message = 'Version bump: {old_version} -> {new_version}'
+current_version = "{{ cookiecutter.version }}"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "Bump version: {old_version} --> {new_version}"
 commit = true
 tag = true
 push = true
 
 [tool.bumpver.file_patterns]
-"pyproject.toml" = [ "current_version = \"{version}\"",]
-'README.md' = [ "Version: {version}",]
-'polls/__init__.py' = [ "__version__ = \"{version}\"",]
-'docs/sphinx/conf.py' = [ "release = '{version}'",]
+"pyproject.toml" = ['version = "{version}"']
+"README.md" = ['Version: {version}']
+"{{ cookiecutter.project_slug }}/__init__.py" = ['__version__ = "{version}"']
+"docs/sphinx/conf.py" = ["release = '{version}'"]
 
-[tool.setuptools]
-packages = [
-    # TODO: Change if needed. This should point to the directory intended to be packaged
-    '{{cookiecutter.project_slug}}',
-]
+[tool.black]
+target-version = ["py37","py38","py39","py310","py311"]
 
-[tool.setuptools.dynamic.version]
-attr = '{{cookiecutter.project_slug}}.__version__'
+[tool.isort]
+profile = "black"
+skip_gitignore = true
