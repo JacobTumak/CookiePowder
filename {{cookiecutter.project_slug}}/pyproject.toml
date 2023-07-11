@@ -11,7 +11,7 @@ description = "{{ cookiecutter.project_short_description }}"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
-    {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
+    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
 ]
 keywords = ["{{ cookiecutter.project_slug }}",]
 {%- set license_classifiers = {
@@ -73,7 +73,9 @@ Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecut
 # Other Tools
 [tool.setuptools]
 include-package-data = true  # True by default, declarations in MANIFEST.in
-packages = ["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.*"]
+
+[tool.setuptools.packages.find]
+include = ["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.*"]
 
 [tool.bumpver]
 current_version = "{{ cookiecutter.version }}"
