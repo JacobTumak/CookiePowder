@@ -74,7 +74,9 @@ if __name__ == '__main__':
         subprocess.run(['pip', 'install', 'pip-tools'])
         subprocess.run(['pip-compile', '-o', 'requirements.txt', 'pyproject.toml', '--resolver=backtracking'])
         subprocess.run(['pip-compile', '-o', 'requirements_dev.txt', 'pyproject.toml', '--resolver=backtracking', '--all-extras'])
-        subprocess.run(['pip-compile', '-o', 'docs/requirements_docs.txt', 'pyproject.toml', '--resolver=backtracking', '--extras=docs'])
+        subprocess.run(['pip-compile', '-o', 'docs/requirements_docs.txt', 'pyproject.toml', '--resolver=backtracking', '--extra=docs'])
+
+    if '{{ cookiecutter.install_requirements }}'.lower() == 'y':
         subprocess.run(['pip', 'install', '-r', 'requirements.txt'])
         subprocess.run(['pip', 'install', '-r', 'requirements_dev.txt'])
 

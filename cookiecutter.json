@@ -16,7 +16,8 @@
 
   "create_django_default_files": "y",
   "generate_django_secret_key": "{{ cookiecutter.create_django_default_files }}",
-  "generate_requirements_files": "n",
+  "generate_requirements_files": "y",
+  "install_requirements": "y",
 
   "_use_invoke": true,
   "_use_bumpver": true,
