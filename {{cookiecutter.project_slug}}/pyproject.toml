@@ -55,7 +55,6 @@ test = [
     "pytest-sugar",
 ]
 utils = [
-    "tomli; python_version < '3.11'",
     "invoke",
     "bumpver",
     "build",
