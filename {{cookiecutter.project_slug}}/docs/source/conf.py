@@ -11,9 +11,9 @@ copyright = "{% now 'local', '%Y' %}, {{ cookiecutter.full_name }}"
 author = "{{ cookiecutter.full_name }}"
 
 # The short X.Y version.
-version = " cookiecutter.version "
+version = "{{ cookiecutter.version }}"
 # The full version, including alpha/beta/rc tags.
-release = " cookiecutter.version "
+release = "{{ cookiecutter.version }}"
 
 # The master toctree document.
 master_doc = "index"
