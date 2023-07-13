@@ -7,10 +7,11 @@
 {% endif %}
 
 Version: {{ cookiecutter.version }}
+
 {{ cookiecutter.project_short_description }}
 
 {% if is_open_source %}
-Documentation: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io
+Documentation: <https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io>
 
 {{ cookiecutter.project_name }} is free software distributed under the {{ cookiecutter.open_source_license }}.
 {% endif %}
