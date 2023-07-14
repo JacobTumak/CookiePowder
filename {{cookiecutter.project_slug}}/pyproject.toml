@@ -55,7 +55,6 @@ test = [
     "pytest-sugar",
 ]
 utils = [
-    "tomli; python_version < '3.11'",
     "invoke",
     "bumpver",
     "build",
@@ -89,7 +88,7 @@ push = true
 "pyproject.toml" = ['version = "{version}"']
 "README.md" = ['Version: {version}']
 "{{ cookiecutter.project_slug }}/__init__.py" = ['__version__ = "{version}"']
-"docs/sphinx/conf.py" = ["release = '{version}'"]
+"docs/source/conf.py" = ["version = '{version}'", "release = '{version}'"]
 
 [tool.black]
 target-version = ["py37","py38","py39","py310","py311"]

@@ -106,8 +106,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 The author of this program can be contacted by electronic mail at:
-{{ cookiecutter.full_name }}
 {{ cookiecutter.email }}
-{{ cookiecutter.company_name }}
 
 {%- endif %}
