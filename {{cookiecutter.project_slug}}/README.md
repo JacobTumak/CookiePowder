@@ -1,4 +1,4 @@
-{% set is_open_source = cookiecutter.open_source_license != 'Not open-source' -%}
+{% set is_open_source = cookiecutter.open_source_license != 'None' -%}
 # {{ cookiecutter.project_name }}
 
 {% if is_open_source %}
@@ -6,10 +6,12 @@
 [![Documentation Status](https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest)](https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?version=latest)
 {% endif %}
 
+Version: {{ cookiecutter.version }}
+
 {{ cookiecutter.project_short_description }}
 
 {% if is_open_source %}
-Documentation: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io
+Documentation: <https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io>
 
 {{ cookiecutter.project_name }} is free software distributed under the {{ cookiecutter.open_source_license }}.
 {% endif %}

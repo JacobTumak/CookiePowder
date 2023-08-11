@@ -4,7 +4,6 @@
   "email": "{{ cookiecutter.full_name.lower().replace(' ', '') }}@{{ cookiecutter.company_name.lower().replace(' ', '') }}.com",
   "github_username": "{{ cookiecutter.full_name.lower().replace(' ', '') }}",
   "pypi_username": "{{ cookiecutter.github_username }}",
-  "copyright_entity": "{{ cookiecutter.full_name }}",
 
   "project_name": "Threat Level Midnight",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
@@ -16,10 +15,12 @@
 
   "create_django_default_files": "y",
   "generate_django_secret_key": "{{ cookiecutter.create_django_default_files }}",
-  "generate_requirements_files": "n",
+  "generate_requirements_files": "y",
+  "install_requirements": "y",
 
   "_use_invoke": true,
   "_use_bumpver": true,
+  "_use_bumpver_git": true,
   "_use_tox": true,
   "_use_pytest": true,
   "_use_black": true,

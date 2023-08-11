@@ -11,7 +11,7 @@ description = "{{ cookiecutter.project_short_description }}"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
-    {name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
+    { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
 ]
 keywords = ["{{ cookiecutter.project_slug }}",]
 {%- set license_classifiers = {
@@ -64,6 +64,7 @@ utils = [
 [project.urls]
 Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+Documentation = "https://{{ cookiecutter.project_slug }}.readthedocs.io"
 
 [project.scripts]
 "manage.py" = "{{ cookiecutter.project_slug }}:django_manage"
@@ -72,24 +73,26 @@ Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecut
 # Other Tools
 [tool.setuptools]
 include-package-data = true  # True by default, declarations in MANIFEST.in
-packages = ["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.*"]
+
+[tool.setuptools.packages.find]
+include = ["{{ cookiecutter.project_slug }}", "{{ cookiecutter.project_slug }}.*"]
 
 [tool.bumpver]
 current_version = "{{ cookiecutter.version }}"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version: {old_version} --> {new_version}"
-commit = false
-tag = false
-push = false
+commit = true
+tag = true
+push = true
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['version = "{version}"']
 "README.md" = ['Version: {version}']
 "{{ cookiecutter.project_slug }}/__init__.py" = ['__version__ = "{version}"']
-"docs/sphinx/conf.py" = ["release = '{version}'"]
+"docs/source/conf.py" = ["version = '{version}'", "release = '{version}'"]
 
 [tool.black]
-target-version = ["py37","py38","py39","py310","py311"]
+target-version = ["py38","py39","py310","py311"]
 
 [tool.isort]
 profile = "black"
