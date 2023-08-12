@@ -16,7 +16,7 @@
   "create_django_default_files": "y",
   "generate_django_secret_key": "{{ cookiecutter.create_django_default_files }}",
   "generate_requirements_files": "y",
-  "install_requirements": "y",
+  "install_requirements": "{{ cookiecutter.generate_requirements_files }}",
 
   "_use_invoke": true,
   "_use_bumpver": true,
@@ -25,5 +25,9 @@
   "_use_pytest": true,
   "_use_black": true,
   "_use_isort": true,
-  "_use_flake8": true
+  "_use_flake8": true,
+
+  "_copy_without_render": [
+    ".github/workflows/pytest.yaml"
+  ]
 }
