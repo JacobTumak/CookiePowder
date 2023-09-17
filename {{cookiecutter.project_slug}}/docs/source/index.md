@@ -1,12 +1,13 @@
-# {{cookiecutter.project_name}} Homepage
+# {{cookiecutter.project_name}}
 
 ```{toctree}
 :maxdepth: 2
-:caption: "Contents:"
+:caption: 🔎 Overview
 
-../README
-{% if '{{cookiecutter.create_author_file}}'|lower() == 'y' %}../AUTHORS{% endif %}
-../CONTRIBUTING
-../HISTORY
+readme_ref.md
+
 # insert other content pages here
+
+changelog
+contributing
 ```

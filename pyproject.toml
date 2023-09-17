@@ -4,10 +4,10 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cookiepowder"
+name = "cookiecutter-powder-pypackage"
 version = "0.1.0"
-requires-python = ">=3.7"
-description = "Cookiecutter template for Django/Python packages using pyproject.toml"
+requires-python = ">=3.8"
+description = "A pypackage cookiecutter template with great tooling."
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [

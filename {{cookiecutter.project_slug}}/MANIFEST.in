@@ -2,6 +2,8 @@ include README.md
 include LICENSE
 
 recursive-include tests *
+recursive-include {{ cookiecutter.project_slug }}/templates *
+recursive-include {{ cookiecutter.project_slug }}/static *
 
 recursive-exclude docs *
 recursive-exclude tasks *
