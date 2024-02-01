@@ -40,3 +40,5 @@ Distributed under the MIT License.
 ## Acknowledgements
 
 This cookiecutter template was heavily based on the official [cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage).
+
+Technologies and decisions [documentation](https://docs.google.com/document/d/1le7BcslojMajsj_rh83VQiki9TPiUJLYHYrCP_WHbYA/edit#heading=h.m9dlnvvcuxln)
