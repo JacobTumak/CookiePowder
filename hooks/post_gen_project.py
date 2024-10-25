@@ -7,11 +7,11 @@ import subprocess
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 django_default_files = [
-    "{{ cookiecutter.project_slug }}/__init__.py",
-    "{{ cookiecutter.project_slug }}/asgi.py",
-    "{{ cookiecutter.project_slug }}/settings.py",
-    "{{ cookiecutter.project_slug }}/urls.py",
-    "{{ cookiecutter.project_slug }}/wsgi.py",
+    "{{ cookiecutter.project_slug }}/config/__init__.py",
+    "{{ cookiecutter.project_slug }}/config/asgi.py",
+    "{{ cookiecutter.project_slug }}/config/settings.py",
+    "{{ cookiecutter.project_slug }}/config/urls.py",
+    "{{ cookiecutter.project_slug }}/config/wsgi.py",
     "manage.py",
 ]
 
@@ -31,7 +31,7 @@ def generate_django_secret_key():
     from django.core.management.utils import get_random_secret_key
     django_secret = get_random_secret_key()
 
-    with open('{{ cookiecutter.project_slug }}/settings.py', "r") as file:
+    with open('{{ cookiecutter.project_slug }}/config/settings.py', "r") as file:
         content = file.read()
 
     # Construct the pattern to match the variable assignment
@@ -40,7 +40,7 @@ def generate_django_secret_key():
     # Replace the variable assignment with the new value
     replaced_content = re.sub(pattern, "{} = '{}'".format('SECRET_KEY', django_secret), content)
 
-    with open('{{ cookiecutter.project_slug }}/settings.py', "w") as file:
+    with open('{{ cookiecutter.project_slug }}/config/settings.py', "w") as file:
         file.write(replaced_content)
 
 
