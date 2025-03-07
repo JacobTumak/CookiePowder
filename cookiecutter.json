@@ -9,7 +9,7 @@
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "project_short_description": "After the untimely death of his wife, secret agent Michael Scarn is tasked with one final mission: vengeance.",
   "version": "0.1.0",
-  "python_version": ">=3.7, <4.0",
+  "python_version": ">=3.10, <4.0",
   "intended_audience": "Developers",
   "open_source_license": ["MIT License", "BSD License", "ISC License", "Apache Software License 2.0", "GNU General Public License v3", "None"],
   "_copy_without_render": [".github"],
