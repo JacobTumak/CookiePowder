@@ -1,3 +1,9 @@
+# Invoke Configuration File
+#
+# docs:
+#   To enable docs related tasks, set `enabled` to `True`
+#   NOTE: some docs tasks require a MAKEFILE to be present in the directory shown in `dir`
+
 docs:
   enabled: False
   dir: docs/

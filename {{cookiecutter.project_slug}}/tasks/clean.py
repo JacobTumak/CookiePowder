@@ -1,14 +1,11 @@
 from invoke import task
 import tasks.docs as docs_task
 
-get_args = lambda c, section: (c.config[section].cleans, c.config[section].paths)
+get_args = lambda c, section: (c.config.clean[section].cleans, c.config.clean[section].paths)
 
-
-def as_str(str_list):
-    return "'" + "' '".join(str_list) + "'" if str_list else ""
 
 def clean_files(c, cleans: str, paths: list[str]):
-    cmd = f"rm -fr {as_str(paths)}"
+    cmd = f"rm -fr {' '.join(paths)}"
     print(f"Cleaning {cleans} with:\n{cmd}")
     c.run(cmd)
     print(f"Cleaned {cleans}")
