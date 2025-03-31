@@ -10,7 +10,7 @@ project = "{{ cookiecutter.project_name }}"
 copyright = "{% now 'local', '%Y' %}, {{ cookiecutter.full_name }}"
 author = "{{ cookiecutter.full_name }}"
 
-django_settings = "tests.settings"
+django_settings = #FIXME
 
 # The short X.Y version.
 version = "{{ cookiecutter.version }}"

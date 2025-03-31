@@ -3,7 +3,7 @@
 
 {% if is_open_source %}
 [![PyPI Version](https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg)](https://pypi.python.org/pypi/{{ cookiecutter.project_slug }})
-[![Documentation Status](https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest)](https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?version=latest)
+{%- if cookiecutter.setup_docs.lower() == 'y' %}[![Documentation Status](https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest)](https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?version=latest){% endif %}
 [![Tests](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions/workflows/pytest.yaml/badge.svg)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions/workflows/pytest.yaml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
 {% endif %}
@@ -13,7 +13,9 @@ Version: {{ cookiecutter.version }}
 {{ cookiecutter.project_short_description }}
 
 {% if is_open_source %}
+{% if cookiecutter.setup_docs.lower() == 'y' -%}
 Documentation: <https://{{ cookiecutter.project_slug }}.readthedocs.io>
+{%- endif %}
 
 {{ cookiecutter.project_name }} is free software distributed under the {{ cookiecutter.open_source_license }}.
 {% endif %}
@@ -44,7 +46,9 @@ Documentation: <https://{{ cookiecutter.project_slug }}.readthedocs.io>
    
 ## Get Me Some of That
 * [Source Code](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
+{% if cookiecutter.setup_docs.lower() == 'y' -%}
 * [Read The Docs](https://{{ cookiecutter.project_slug }}.readthedocs.io/en/latest/)
+{%- endif %}
 * [Issues](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues)
 * [PyPI](https://pypi.org/project/{{ cookiecutter.project_slug }})
 
@@ -69,17 +73,30 @@ and the [`cookiecutter-powder-pypackage`](https://github.com/JacobTumak/CookiePo
 
 
 ## For Developers
+Initialise the development environment using the invoke task
    ```bash
-   $  pip install -r reqirements_dev.txt
+   inv tox.venv
+   ```
+Or create it with tox directly
+   ```bash
+   tox d -e dev .venv
+   ```
+Or install the dev requirements with pip
+   ```bash
+   pip install -r reqirements_dev.txt
    ```
 
 ### Tests
    ```bash
-   $ pytest
+   pytest
    ```
 or
    ```bash
-   $ tox
+   tox r
+   ```
+or run tox environments in parallel using
+   ```bash
+   tox p
    ```
 
 ### Code Style / Linting
@@ -95,9 +112,11 @@ or
    $ bumpver show
    ```
 
+{% if cookiecutter.setup_docs.lower() == 'y' %}
 ### Docs
  * [Sphinx](https://www.sphinx-doc.org/en/master/) + [MyST parser](https://myst-parser.readthedocs.io/en/latest/intro.html)
  * [Read The Docs](https://readthedocs.org/projects/{{ cookiecutter.project_slug }}/)
+{% endif %}
 
 ### Build / Deploy Automation
  * [invoke](https://www.pyinvoke.org/)

@@ -16,10 +16,12 @@ dist/
 .coverage
 htmlcov/
 
+{% if cookiecutter.setup_docs.lower() == 'y' -%}
 # Sphinx documentation
 docs/build/
 docs/_static/
 docs/_templates/
+{%- endif %}
 
 # Django databases
 db.sqlite3

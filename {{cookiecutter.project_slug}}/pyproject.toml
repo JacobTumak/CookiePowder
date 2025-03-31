@@ -23,7 +23,7 @@ keywords = ["{{ cookiecutter.project_slug }}",]
 } %}
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
-    {%- if cookiecutter.open_source_license in license_classifiers %}
+    {% if cookiecutter.open_source_license in license_classifiers -%}
     "{{ license_classifiers[cookiecutter.open_source_license] }}",
     {%- endif %}
     "Intended Audience :: {{ cookiecutter.intended_audience }}",
@@ -36,6 +36,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+{%- if cookiecutter.setup_docs.lower() == 'y' %}
 docs = [
     "sphinx",
     "myst-parser",
@@ -44,31 +45,37 @@ docs = [
     "sphinxcontrib_django",
     "sphinx-autodoc2",
 ]
-style = [
+{%- endif %}
+format = [
     "black",
     "isort",
+]
+lint = [
     "flake8",
     "flake8-bugbear",
 ]
 test = [
-    "tox",
     "pytest",
     "pytest-django",
     "pytest-cov",
     "pytest-sugar",
 ]
 utils = [
+    "tox",
     "invoke",
     "bumpver",
-    "build",
-    "twine",
     "pip-tools",
 ]
-
+build = [
+    "build",
+    "twine",
+]
 [project.urls]
 Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 Repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+{% if cookiecutter.setup_docs.lower() == 'y' -%}
 Documentation = "https://{{ cookiecutter.project_slug }}.readthedocs.io"
+{%- endif %}
 
 [project.scripts]
 "manage.py" = "{{ cookiecutter.project_slug }}:django_manage"
@@ -93,10 +100,12 @@ push = true
 "pyproject.toml" = ['version = "{version}"']
 "README.md" = ['Version: {version}']
 "{{ cookiecutter.project_slug }}/__init__.py" = ['__version__ = "{version}"']
+{% if cookiecutter.setup_docs.lower() == 'y' -%}
 "docs/source/conf.py" = ["version = '{version}'", "release = '{version}'"]
+{%- endif %}
 
 [tool.black]
-target-version = ["py38","py39","py310","py311"]
+target-version = ["{{ '", "'.join(cookiecutter.target_versions.split(" ")) }}"]
 
 [tool.isort]
 profile = "black"
