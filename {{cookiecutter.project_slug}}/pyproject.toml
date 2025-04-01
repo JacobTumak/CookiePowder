@@ -35,7 +35,7 @@ dependencies = [
     "django",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 {%- if cookiecutter.setup_docs.lower() == 'y' %}
 docs = [
     "sphinx",
@@ -69,6 +69,16 @@ utils = [
 build = [
     "build",
     "twine",
+]
+dev = [
+    {% if cookiecutter.setup_docs.lower() == 'y' -%}
+    { include-group = "docs" },
+    {%- endif %}
+    { include-group = "format" },
+    { include-group = "lint" },
+    { include-group = "test" },
+    { include-group = "utils" },
+    { include-group = "build" },
 ]
 [project.urls]
 Homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
