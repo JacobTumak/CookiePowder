@@ -7,7 +7,7 @@
 
   "project_name": "Threat Level Midnight",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-  "project_short_description": "After the untimely death of his wife, secret agent Michael Scarn is tasked with one final mission: vengeance.",
+  "project_short_description": "Secret agent Michael Scarn is tasked with one final mission: vengeance.",
   "version": "0.1.0",
   "python_version": ">=3.10, <4.0",
   "target_versions": "py39 py310 py311",
@@ -17,8 +17,7 @@
 
   "setup_docs": "y",
   "create_django_default_files": "y",
-  "generate_django_secret_key": "{{ cookiecutter.create_django_default_files }}",
-  "generate_requirements_files": "y",
+  "generate_requirements_files": "n",
 
   "_copy_without_render": [".github"],
   "_use_invoke": true,

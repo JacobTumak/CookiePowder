@@ -6,7 +6,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', #FIXME: set path to django settings)
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', {% if cookiecutter.create_django_default_files.lower() == "y" -%}
+            "{{ cookiecutter.project_slug }}.config.settings"
+        {%- else -%}
+            #FIXME path.to.test.settings
+        {%- endif %})
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

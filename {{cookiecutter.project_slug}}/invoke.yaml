@@ -2,10 +2,10 @@
 #
 # docs:
 #   To enable docs related tasks, set `enabled` to `True`
-#   NOTE: some docs tasks require a MAKEFILE to be present in the directory shown in `dir`
+#   NOTE: some docs tasks require a `MAKEFILE` and `make.bat` to be present in the directory shown in `dir`
 
 docs:
-  enabled: False
+  enabled: {% if cookiecutter.setup_docs.lower() == 'y' %}True{% else %}False{% endif %}
   dir: docs/
 
 clean:
