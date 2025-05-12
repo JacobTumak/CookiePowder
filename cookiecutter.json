@@ -5,7 +5,7 @@
   "github_username": "{{ cookiecutter.full_name.lower().replace(' ', '') }}",
   "pypi_username": "{{ cookiecutter.github_username }}",
 
-  "project_name": "Threat Level Midnight",
+  "project_name": "threat-level-midnight",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "project_short_description": "Secret agent Michael Scarn is tasked with one final mission: vengeance.",
   "version": "0.1.0",
@@ -19,7 +19,6 @@
   "create_django_default_files": "y",
   "generate_requirements_files": "n",
 
-  "_copy_without_render": [".github"],
   "_use_invoke": true,
   "_use_bumpver": true,
   "_use_bumpver_git": true,
