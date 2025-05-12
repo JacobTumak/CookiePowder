@@ -2,24 +2,25 @@ name: Test with tox
 
 on:
   push:
-    branches: ["master", "dev"]
+    branches: [ "main", "dev" ]
   pull_request:
     types: ["opened", "reopened"]
+  tags: ["*.*.*"]
 
 jobs:
   run-tox:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11"]  #FIXME ensure correct target python versions
+        python-version: ["{{ '", "'.join(cookiecutter.target_versions.split(" ")) }}"]
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python {% raw %}${{ matrix.python-version }}{% endraw %}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
 
       - name: Install dependencies
         run: |
