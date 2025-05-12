@@ -1,4 +1,5 @@
-from invoke import task
+from invoke import task, Config
+from pathlib import Path
 
 
 def require_docs_enabled(c):
@@ -35,3 +36,12 @@ def build(c):
 def release(c):
     """Push docs to GitHub, triggering webhook to build Read The Docs"""
     c.run("git push")
+
+def mark_if_disabled(*tasks):
+    _conf = Config(project_location=Path(__file__).parent.parent)
+    _conf.load_project()
+    if not _conf.docs.enabled:
+        for func in tasks:
+            func.__doc__ = "\033[31m[disabled]\033[0m " + func.__doc__
+
+mark_if_disabled(clean, build, release)
