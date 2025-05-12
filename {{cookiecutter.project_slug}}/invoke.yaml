@@ -37,3 +37,12 @@ clean:
     cleans: tox directory
     paths:
       - ".tox/"
+
+act:
+  runners:
+    # more runners found at https://nektosact.com/usage/runners.html
+    # each runner below is passed to `act` as `-P <platform>=<runner>`
+    ubuntu-latest: catthehacker/ubuntu:act-latest
+#    ubuntu-22.04: catthehacker/ubuntu:act-22.04
+#    ubuntu-20.04: catthehacker/ubuntu:act-20.04
+#    ubuntu-18.04: catthehacker/ubuntu:act-18.04
