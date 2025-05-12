@@ -13,7 +13,7 @@ license = {file = "LICENSE"}
 authors = [
     { name = "{{ cookiecutter.full_name }}", email = "{{ cookiecutter.email }}" }
 ]
-keywords = ["{{ cookiecutter.project_slug }}",]
+keywords = ["{{ cookiecutter.project_name }}", "{{ cookiecutter.project_slug }}",]
 {%- set license_classifiers = {
     "MIT License": "License :: OSI Approved :: MIT License",
     "BSD License": "License :: OSI Approved :: BSD License",
