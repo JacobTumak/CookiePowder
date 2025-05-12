@@ -1,12 +1,9 @@
 {% set is_open_source = cookiecutter.open_source_license != 'None' -%}
 # {{ cookiecutter.project_name }}
 
-{% if is_open_source %}
-[![PyPI Version](https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg)](https://pypi.python.org/pypi/{{ cookiecutter.project_slug }})
-{%- if cookiecutter.setup_docs.lower() == 'y' %}[![Documentation Status](https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest)](https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?version=latest){% endif %}
-[![Tests](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions/workflows/pytest.yaml/badge.svg)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions/workflows/pytest.yaml)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
-{% endif %}
+{% if is_open_source -%}
+[![PyPI Version](https://img.shields.io/pypi/v/{{cookiecutter.project_slug}}.svg)](https://pypi.python.org/pypi/{{cookiecutter.project_name}}) ![Test with tox](https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/actions/workflows/tox.yaml/badge.svg) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}})
+{%- endif %}
 
 Version: {{ cookiecutter.version }}
 
@@ -14,7 +11,7 @@ Version: {{ cookiecutter.version }}
 
 {% if is_open_source %}
 {% if cookiecutter.setup_docs.lower() == 'y' -%}
-Documentation: <https://{{ cookiecutter.project_slug }}.readthedocs.io>
+Documentation: <https://{{ cookiecutter.project_name }}.readthedocs.io>
 {%- endif %}
 
 {{ cookiecutter.project_name }} is free software distributed under the {{ cookiecutter.open_source_license }}.
@@ -30,9 +27,9 @@ Documentation: <https://{{ cookiecutter.project_slug }}.readthedocs.io>
 
 ## Quick Start
 
-1. Install the `{{ cookiecutter.project_slug }}` package from PyPI
+1. Install the `{{ cookiecutter.project_name }}` package from PyPI
     ```bash
-    $ pip install {{ cookiecutter.project_slug }}
+    $ pip install {{ cookiecutter.project_name }}
     ```
 
 2. Add `'{{ cookiecutter.project_slug }}'` to `INSTALLED_APPS`:
@@ -45,24 +42,24 @@ Documentation: <https://{{ cookiecutter.project_slug }}.readthedocs.io>
     ```
    
 ## Get Me Some of That
-* [Source Code](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
+* [Source Code](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }})
 {% if cookiecutter.setup_docs.lower() == 'y' -%}
-* [Read The Docs](https://{{ cookiecutter.project_slug }}.readthedocs.io/en/latest/)
+* [Read The Docs](https://{{ cookiecutter.project_name }}.readthedocs.io/en/latest/)
 {%- endif %}
-* [Issues](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues)
-* [PyPI](https://pypi.org/project/{{ cookiecutter.project_slug }})
+* [Issues](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/issues)
+* [PyPI](https://pypi.org/project/{{ cookiecutter.project_name }})
 
-[{{ cookiecutter.open_source_license }}](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/blob/master/LICENSE)
+[{{ cookiecutter.open_source_license }}](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/blob/master/LICENSE)
 
 ### Check Out the Demo App
 
-1. `pip install -e git+https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.git#egg={{ cookiecutter.project_slug }}`
-1. `python {{ cookiecutter.project_slug }}/manage.py install_demo`
-1. `python {{ cookiecutter.project_slug }}/manage.py runserver`
+1. `pip install -e git+https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}.git#egg={{ cookiecutter.project_name }}`
+1. `python {{ cookiecutter.project_name }}/manage.py install_demo`
+1. `python {{ cookiecutter.project_name }}/manage.py runserver`
 
 
 ### Acknowledgments
-This project would be impossible to maintain without the help of our generous [contributors](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/graphs/contributors)
+This project would be impossible to maintain without the help of our generous [contributors](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/graphs/contributors)
 
 #### Technology Colophon
 
@@ -123,5 +120,5 @@ or run tox environments in parallel using
    ```bash
    $ invoke -l
    ```
- * [GitHub Actions](https://docs.github.com/en/actions) (see [.github/workflows](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/master/.github/workflows))
- * [GitHub Webhooks](https://docs.github.com/en/webhooks)  (see [settings/hooks](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/settings/hooks))
+ * [GitHub Actions](https://docs.github.com/en/actions) (see [.github/workflows](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/tree/master/.github/workflows))
+ * [GitHub Webhooks](https://docs.github.com/en/webhooks)  (see [settings/hooks](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/settings/hooks))
